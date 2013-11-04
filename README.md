@@ -1,4 +1,4 @@
-the-c-programming-language-exercise-answer
+the-c-programming-language-exercise-answers
 ==========================================
 
 The C programming language exercise answers.

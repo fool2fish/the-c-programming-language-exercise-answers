@@ -7,10 +7,20 @@
 #include <stdio.h>
 
 int main() {
+	char prev;
+	char c;
+	while ((c = getchar()) != EOF) {
+		if (c != ' ' || prev != ' ') {
+			putchar(prev = c);
+		}
+	}
+
+
+	/*
 	char *s;
 	int p = 0;
-	char c;
 	char prev;
+	char c;
 
 	while((c = getchar()) != EOF) {
 		if (c != ' ' || prev != ' ') {
@@ -19,4 +29,5 @@ int main() {
 	}
 
 	printf("\n%s", s);
+	*/
 }

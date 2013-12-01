@@ -56,10 +56,10 @@ void painth(int counts[], int size) {
 	}
 
 	for (i = 0; i < size; i++) {
-		int barlen = counts[i] * 20 / peak;
-		char bar[barlen + 1];
+		int barsize = counts[i] * 20 / peak + 1;
+		char bar[barsize];
 		int j;
-		for (j = 0; j < barlen; j++) {
+		for (j = 0; j < barsize - 1; j++) {
 			bar[j] = '+';
 		}
 		bar[j] = '\0';

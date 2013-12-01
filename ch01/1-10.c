@@ -8,24 +8,19 @@
 #include <stdio.h>
 
 int main() {
-	char *s;
-	int p = 0;
 	char c;
-
 	while ((c = getchar()) != EOF) {
 		if (c == '\t') {
-			*(s + p++) = '\\';
-			*(s + p++) = 't';
-		} else if (c == '\n') {
-			*(s + p++) = '\\';
-			*(s + p++) = 'n';
+			putchar('\\');
+			putchar('t');
+		} else if (c == '\b') {
+			putchar('\\');
+			putchar('b');
 		} else if (c == '\\') {
-			*(s + p++) = '\\';
-			*(s + p++) = '\\';
+			putchar('\\');
+			putchar('\\');
 		} else {
-			*(s + p++) = c;
+			putchar(c);
 		}
 	}
-
-	printf("\n%s", s);
 }

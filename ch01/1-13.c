@@ -8,8 +8,10 @@
 #include <stdio.h>
 #include <ctype.h>
 
-void updateCounts(int counts[], int size, int wordlen);
+void updatecounts(int counts[], int size, int wordlen);
+int getpeak(int counts[], int size);
 void painth(int counts[], int size);
+void paintv(int counts[], int size);
 
 
 int main() {
@@ -24,7 +26,7 @@ int main() {
 	while ((c = getchar()) != EOF) {
 		if (isIn) {
 			if (isspace(c)) {
-				updateCounts(counts, size, wordlen);
+				updatecounts(counts, size, wordlen);
 				isIn = 0;
 				wordlen = 0;
 			} else {
@@ -37,24 +39,33 @@ int main() {
 			}
 		}
 	}
-	if (wordlen > 0) updateCounts(counts, size, wordlen);
+	if (wordlen > 0) updatecounts(counts, size, wordlen);
 
 	painth(counts, size);
+
+	paintv(counts, size);
 }
 
 
-void updateCounts(int counts[], int size, int wordlen) {
+void updatecounts(int counts[], int size, int wordlen) {
 	wordlen = wordlen < size ? wordlen : size;
 	counts[wordlen - 1]++;
 }
 
-void painth(int counts[], int size) {
+int getpeak(int counts[], int size) {
 	int peak = 0;
 	int i;
 	for (i = 0; i < size; i++) {
 		peak = peak > counts[i] ? peak : counts[i];
 	}
+	return peak;
+}
 
+void painth(int counts[], int size) {
+	printf("\nHorizontal histogram:\n\n");
+	int peak = getpeak(counts, size);
+
+	int i;
 	for (i = 0; i < size; i++) {
 		int barsize = counts[i] * 20 / peak + 1;
 		char bar[barsize];
@@ -70,4 +81,42 @@ void painth(int counts[], int size) {
 		}
 		printf(format, i + 1, bar, counts[i]);
 	}
+}
+
+void paintv(int counts[], int size) {
+	printf("\nVertical histogram:\n\n");
+	int peak = getpeak(counts, size);
+	int i, j, h = 20;
+
+	int bars[size];
+	for (i = 0; i < size; i++) {
+		bars[i] = counts[i] * h / peak;
+	}
+
+	for (i = 0; i <= h; i++) {
+		for(j = 0; j < size; j++) {
+			if (h - i == bars[j]) {
+				printf("%-5d", counts[j]);
+			} else if (h - i < bars[j]) {
+				printf("%-5c", '+');
+			} else {
+				printf("%-5c", ' ');
+			}
+		}
+		printf("\n");
+	}
+
+	for (i = 0; i < size; i++) {
+		printf("=====");
+	}
+	printf("\n");
+
+	for (i = 0; i < size; i++) {
+		char *format = "%-5d";
+		if (i == size - 1) {
+			format = ">=%-5d";
+		}
+		printf(format, i + 1);
+	}
+	printf("\n");
 }

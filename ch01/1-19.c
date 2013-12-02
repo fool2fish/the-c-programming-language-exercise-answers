@@ -12,7 +12,7 @@ int line(char s[], int maxlen);
 void reverse(char s[]);
 
 int main() {
-	char s[MAXLEN + 2];
+	char s[MAXLEN + 1];
 	while (line(s, MAXLEN)) {
 		reverse(s);
 		printf("%s", s);
@@ -22,10 +22,9 @@ int main() {
 int line(char s[], int maxlen) {
 	char c;
 	int i;
-	for (i = 0; (c = getchar()) != EOF && c != '\n' && i < maxlen - 1; s[i++] = c);
-	if (c == '\n') {
+	for (i = 0; (c = getchar()) != EOF && i < maxlen - 1; i++) {
 		s[i] = c;
-		i++;
+		if (c == '\n') break;
 	}
 	s[i] = '\0';
 	return i;

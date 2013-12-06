@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 int bitlen(unsigned d);
-unsigned rightrot(unsigned d, int x);
+unsigned rightrot(unsigned d, unsigned x);
 
 int main() {
-	printf("rightrot(%u, %d) -> %u\n", 11, 1, rightrot(11, 1));
-	printf("rightrot(%u, %d) -> %u\n", 1024, 14,rightrot(1024, 14));
+	printf("rightrot(11, 1) -> %u\n", rightrot(11, 1));
+	printf("rightrot(1024, 14) -> %u\n", rightrot(1024, 14));
 }
 
 int bitlen(unsigned d) {
@@ -16,7 +16,7 @@ int bitlen(unsigned d) {
 	return len;
 }
 
-unsigned rightrot(unsigned d, int x) {
+unsigned rightrot(unsigned d, unsigned x) {
 	int len = bitlen(d);
 	if (len) {
 		x %= len;

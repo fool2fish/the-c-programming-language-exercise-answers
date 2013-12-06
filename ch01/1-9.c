@@ -7,27 +7,26 @@
 #include <stdio.h>
 
 int main() {
-	char prev;
-	char c;
-	while ((c = getchar()) != EOF) {
-		if (c != ' ' || prev != ' ') {
-			putchar(prev = c);
-		}
-	}
+  char prev;
+  char c;
+  while ((c = getchar()) != EOF) {
+    if (c != ' ' || prev != ' ') {
+      putchar(prev = c);
+    }
+  }
 
+  /*
+  char *s;
+  int p = 0;
+  char prev;
+  char c;
 
-	/*
-	char *s;
-	int p = 0;
-	char prev;
-	char c;
+  while((c = getchar()) != EOF) {
+    if (c != ' ' || prev != ' ') {
+      *(s + p++) = prev = c;
+    }
+  }
 
-	while((c = getchar()) != EOF) {
-		if (c != ' ' || prev != ' ') {
-			*(s + p++) = prev = c;
-		}
-	}
-
-	printf("\n%s", s);
-	*/
+  printf("\n%s", s);
+  */
 }

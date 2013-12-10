@@ -75,7 +75,7 @@ void itoa(int n, char s[], int w) {
 
   if (i < w) {
     while (w > i) {
-      s[i++] = ' ';
+      s[i++] = '~';
     }
   }
 

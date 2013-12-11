@@ -1,3 +1,5 @@
+// gcc ch05/5-2.c ch04/getch.c
+
 /* Exercise 5-2
  * Write getfloat, the floating-point analog of getint.
  * What type does getfloat return as its function value?

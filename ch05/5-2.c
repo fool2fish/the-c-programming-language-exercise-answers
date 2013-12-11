@@ -31,13 +31,14 @@ int getfloat(double *p) {
   sign = c == '-' ? -1 : 1;
 
   if (c == '-' || c == '+') {
-    c = getch();
-  }
-
-  if (!isdigit(c)) {
-    ungetch(c);
-    ungetch(sign == -1 ? '-' : '+');
-    return 0;
+    nextc = getch();
+    if (isdigit(nextc)) {
+      c = nextc;
+    } else {
+      ungetch(nextc);
+      ungetch(c);
+      return 0;
+    }
   }
 
   for (*p = 0.0; isdigit(c); c = getch()) {

@@ -6,7 +6,7 @@ char buf[BUFSIZE];
 int p = 0;
 
 int getch() {
-  return p > 0 ? buf[p--] : getchar();
+  return p > 0 ? buf[--p] : getchar();
 }
 
 int ungetch(char c) {

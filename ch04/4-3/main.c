@@ -20,8 +20,8 @@ int main(int argc, char *argv[]) {
     } else if (!strcmp(s, "*")) {
       push(pop() * pop());
     } else if (!strcmp(s, "-")) {
-      swap();
-      push(pop() - pop());
+      tmp = pop();
+      push(pop() - tmp);
     } else if (!strcmp(s, "/")) {
       tmp = pop();
       if (tmp != 0) {

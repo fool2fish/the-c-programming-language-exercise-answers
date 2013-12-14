@@ -21,3 +21,17 @@ double pop() {
     return 0.0;
   }
 }
+
+void swap() {
+  if (p > 1) {
+    double tmp = val[p - 1];
+    val[p - 1] = val[p - 2];
+    val[p - 2] = tmp;
+  } else {
+    printf("Error: on enough stack elements to swap.");
+  }
+}
+
+double gettop() {
+  return val[p - 1];
+}

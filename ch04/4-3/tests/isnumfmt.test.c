@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "../src/isnumfmt.h"
+#include "../isnumfmt.h"
 
 int main(int argc, char *argv[]) {
   assert(isnumfmt("0"));

@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <string.h>
-#include "../src/getop.h"
+#include "../getop.h"
 
 int main(int argc, char *argv[]) {
   char s[100];

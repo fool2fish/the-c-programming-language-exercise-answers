@@ -2,7 +2,7 @@ output = calculator.out
 
 all:
 
-	gcc -o ${output} main.c getch.c getop.c isnumfmt.c stack.c
+	gcc -o ${output} main.c getop.c isnumfmt.c stack.c getline2.c
 
 run:
 
@@ -15,7 +15,7 @@ test:
 	rm getline2.out
 
 	gcc -o getop.out getop.c getch.c tests/getop.test.c
-	./getop.out <tests/getop.input.txt
+	./getop.out
 	rm getop.out
 
 	gcc -o isnumfmt.out isnumfmt.c tests/isnumfmt.test.c

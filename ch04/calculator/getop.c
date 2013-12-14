@@ -1,26 +1,20 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "getch.h"
 
 /*
- * Get token seperated by space.
- * return 1 if get a token or return 0.
+ * Get token seperated by space from s
+ * Return index if found or 0 if not found
  */
-int getop(char s[]) {
-  int i, c;
+int getop(char s[], int i, char t[]) {
+  int j = 0;
+  int c;
 
-  while (isspace(s[0] = c = getch()));
+  for (; isspace(s[i]); i++);
 
-  if (c == EOF) {
-    s[0] = '\0';
-    return 0;
-  }
+  for (; !isspace(c = s[i]) && c != '\0'; i++, t[j++] = c);
+  t[j] = '\0';
 
-  for (i = 1; !isspace(s[i] = c = getch()) && c != EOF; i++);
-  s[i] = '\0';
-  ungetch(c);
-
-  return 1;
+  return j ? i : -1;
 }
 
 

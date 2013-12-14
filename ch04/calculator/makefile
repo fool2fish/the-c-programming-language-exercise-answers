@@ -21,3 +21,7 @@ test:
 	gcc -o stack.out stack.c tests/stack.test.c
 	./stack.out
 	rm stack.out
+	
+	gcc -o getline2.out getline2.c tests/getline2.test.c
+	./getline2.out <tests/getline2.input.txt
+	rm getline2.out

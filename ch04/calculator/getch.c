@@ -2,8 +2,8 @@
 
 #define BUFSIZE 100
 
-char buf[BUFSIZE];
-int p = 0;
+static char buf[BUFSIZE];
+static int p = 0;
 
 int getch() {
   return p > 0 ? buf[--p] : getchar();

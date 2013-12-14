@@ -11,6 +11,10 @@ int isnumfmt(char s[]) {
     i++;
   }
 
+  if (s[i] == '\0') {
+    return 0;
+  }
+
   for (; isdigit(c = s[i]); i++);
 
   if (c == '.') {

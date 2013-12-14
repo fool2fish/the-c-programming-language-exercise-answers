@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "./getch.h"
+#include "getch.h"
 
 /*
  * Get token seperated by space.

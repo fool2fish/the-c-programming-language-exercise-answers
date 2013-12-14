@@ -8,6 +8,7 @@ int main(int argc, char *argv[]) {
   assert(isnumfmt(".3"));
   assert(isnumfmt("4e5"));
   assert(isnumfmt("6E-7"));
+  assert(!isnumfmt("+"));
   assert(!isnumfmt("1a"));
   assert(!isnumfmt("a1"));
   assert(!isnumfmt("12e"));

@@ -2,10 +2,10 @@
 
 #define LEN 100
 
-int p = 0;
-double val[LEN];
+static int p = 0;
+static double val[LEN];
 
-int push(double n) {
+void push(double n) {
   if (p < LEN) {
     val[p++] = n;
   } else {

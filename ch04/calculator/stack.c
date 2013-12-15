@@ -6,7 +6,6 @@ static int p = 0;
 static double val[LEN];
 
 void push(double n) {
-  printf("push n: %g at idx: %d\n", n, p);
   if (p < LEN) {
     val[p++] = n;
   } else {

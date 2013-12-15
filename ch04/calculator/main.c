@@ -16,14 +16,10 @@ int main(int argc, char *argv[]) {
   double tmp;
 
   while(getline2(line)) {
-    printf("get line: %s\n", line);
-
     int start = 0;
     while ((start = getop(line, start, t)) != -1) {
-      printf("getop: %s\n", t);
       if (isnumfmt(t)) {
         push(atof(t));
-
       } else if (!strcmp(t, "+")) {
         push(pop() + pop());
       } else if (!strcmp(t, "*")) {

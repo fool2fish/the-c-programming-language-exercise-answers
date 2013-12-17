@@ -1,5 +1,3 @@
-// gcc 5-2.c ../ch04/getch.c
-
 /* Exercise 5-2
  * Write getfloat, the floating-point analog of getint.
  * What type does getfloat return as its function value?
@@ -7,18 +5,8 @@
 
 #include <stdio.h>
 #include <ctype.h>
-#include "../ch04/getch.h"
+#include "../5-1-getint/getch.h"
 
-int getfloat(double *p);
-
-int main() {
-  double i;
-  if (getfloat(&i)) {
-    printf("Found float: %g\n", i);
-  } else {
-    printf("Not fount float.\n");
-  }
-}
 
 int getfloat(double *p) {
   int c, sign, nextc, power = 1;

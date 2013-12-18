@@ -3,9 +3,6 @@ output = calculator.out
 all:
 
 	gcc -o ${output} main.c getop.c isnumfmt.c stack.c getline2.c
-
-run:
-
 	./${output}
 
 test:

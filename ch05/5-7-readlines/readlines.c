@@ -14,7 +14,6 @@ int readlines(char *lineptr[], int maxlines) {
       return -1;
     } else {
       strcpy(p, line);
-      *(p + len) = '\0';
       lineptr[nlines++] = p;
     }
   }

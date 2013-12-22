@@ -32,12 +32,12 @@ void monthday(int y, int d, int *pm, int *pd) {
 int dayofyear(int y, int m, int d) {
   int i, leap = isleap(y);
 
-  if (m < 1 || m > 12 || d < 1 || d > daytab[leap][m]) {
+  if (m < 1 || m > 12 || d < 1 || d > *(*(daytab + leap) + m)) {
     return 0;
   }
 
   for (i = 1; i < m; i++) {
-    d += daytab[leap][i];
+    d += *(*(daytab + leap) + i);
   }
 
   return d;

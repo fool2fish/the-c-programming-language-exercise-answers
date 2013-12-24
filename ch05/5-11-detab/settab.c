@@ -7,7 +7,7 @@ void settab(int argc, char *argv[], int *tab) {
   int i;
   int p;
   if (argc <= 1) {
-    for (i = 0; i < MAXLINE; i++) {
+    for (i = 1; i < MAXLINE; i++) {
       tab[i] = i % TABING == 0 ? 1 : 0;
     }
   } else {

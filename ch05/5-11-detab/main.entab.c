@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "detab.h"
+#include "entab.h"
 #include "settab.h"
 
 #define MAXLINE 100

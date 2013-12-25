@@ -2,45 +2,39 @@
 
 #include "tabpos.h"
 
-int space = 0;
-
 void entab(int *tab) {
   int c;
   int pos = 0;
+  int space = 0;
   while ((c = getchar()) != EOF) {
+    pos++;
     if (c == ' ') {
       space++;
-      pos++;
-      while ((c = getchar()) == ' ') {
-        space++;
-        pos++;
-        if (tab[pos]) {
-          space = 0;
-          putchar('\\');
-          putchar('t');
+    } else {
+      if (c == '\t') {
+        space = 0;
+        while (!tabpos(pos, tab)) {
+          pos++;
         }
-      }
-      if (c != ' ') {
-        while(--space >= 0) {
-          putchar(' ');
+        putchar('\\');
+        putchar('t');
+      } else if (c == '\n') {
+        space = 0;
+        pos = 0;
+        putchar(c);
+      } else {
+        while (space > 0) {
+          putchar('-');
+          space--;
         }
         putchar(c);
-        pos++;
       }
-      if (c == EOF) {
-        break;
-      }
-    } else if (c == '\t') {
+    }
+
+    if (tabpos(pos, tab) && space > 0) {
+      space = 0;
       putchar('\\');
       putchar('t');
-      while(!tab[++pos]);
-    } else if (c == '\n') {
-      putchar(c);
-      space = 0;
-      pos = 0;
-    } else {
-      putchar(c);
-      pos++;
     }
   }
 }

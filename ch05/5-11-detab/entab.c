@@ -12,14 +12,14 @@ void entab(int *tab) {
       space++;
     } else {
       if (c == '\t') {
-        space = 0;
+        space = 0; // forget spaces
         while (!tabpos(pos, tab)) {
           pos++;
         }
         putchar('\\');
         putchar('t');
       } else if (c == '\n') {
-        space = 0;
+        space = 0; // forget tailed space
         pos = 0;
         putchar(c);
       } else {

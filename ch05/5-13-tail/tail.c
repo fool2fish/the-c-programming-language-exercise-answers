@@ -35,7 +35,7 @@ void tail(int n) {
       return;
 
     } else {
-      strcpy2(s, p);
+      strcpy(p, s);
       if (count >= n) {
         free(lines[count % n]);
       }
@@ -53,6 +53,7 @@ void tail(int n) {
   printf("---->\n");
   for (; start < end; start++) {
     printf("%s", lines[start % n]);
+    free(lines[start % n]);
   }
   printf("<----\n");
 }
@@ -72,12 +73,5 @@ static int getline2(char *s, int len) {
   }
   *(s + i) = '\0';
   return i;
-}
-
-static void strcpy2(char *from, char *to) {
-  while (*from != '\0') {
-    *to++ = *from++;
-  }
-  *to = '\0';
 }
 

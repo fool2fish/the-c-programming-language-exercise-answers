@@ -24,6 +24,10 @@ int main(){
 
 疑问：为什么输出结果不一样？注意 `strcmp(const char *, const char *)` 的声明要求参数是 const。
 
+```
+char* const a
+char const *p // 疑问：两者有什么区别？
+```
 
 ### 初始化
 

@@ -1,0 +1,5 @@
+abcd
+abc
+ABC
+3
+12

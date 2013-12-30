@@ -2,8 +2,11 @@ run:
 
 	gcc main.c getlines.c cmp.c qsort2.c swap.c
 	./a.out <main.input.txt
+	./a.out -r <main.input.txt
 	./a.out -f <main.input.txt
+	./a.out -fr <main.input.txt
 	./a.out -n <main.input.txt
+	./a.out -nr <main.input.txt
 	rm a.out
 	
 test:

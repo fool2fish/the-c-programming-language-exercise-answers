@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
     } else {
       cmp = numcmp;
     }
-    qsort2(lines, 0, len - 1, cmp);
+    qsort2(lines, 0, len - 1, cmp, reverse);
 
     int i;
     for (i = 0; i < len; i++) {

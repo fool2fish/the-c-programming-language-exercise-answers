@@ -14,7 +14,6 @@ direct-dcl -> direct-dcl postfix
 
 direct-dcl' -> id
              | "(" dcl ")"
-             | epsilon
 
 postfix -> "(" params ")"
          | "[" length "]"

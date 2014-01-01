@@ -1,1 +1,1 @@
-const char *(  *foo(  void *, int param))[100]
+const char *(  *foo(  void *p, int param))[100]

@@ -25,6 +25,10 @@ int main() {
   assert(strcmp(tokenval, "void") == 0);
 
   assert(gettoken(stdin) == '*');
+
+  assert(gettoken(stdin) == ID);
+  assert(strcmp(tokenval, "p") == 0);
+
   assert(gettoken(stdin) == ',');
 
   assert(gettoken(stdin) == KEYWORD);

@@ -5,6 +5,12 @@
 #include "gettoken.h"
 
 int main() {
+  /*
+  int tokentype;
+  while ((tokentype = gettoken(stdin)) != EOF) {
+    printf("%s (line:%d, col:%d)\n", tokenval, tokenline, tokencol);
+  }
+  */
 
   assert(gettoken(stdin) == KEYWORD);
   assert(strcmp(tokenval, "const") == 0);

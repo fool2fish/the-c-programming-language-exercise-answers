@@ -4,6 +4,8 @@
 #define MAXTOKEN 100
 
 char tokenval[MAXTOKEN];
+int tokenline;
+int tokencol;
 
 enum tokentypes {
   ILLEGAL,

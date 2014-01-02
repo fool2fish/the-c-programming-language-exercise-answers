@@ -20,18 +20,49 @@ static int iskeyword(char *s) {
   return 0;
 }
 
-static nextiseof;
+
+static int nextiseof = 0;
+static int charline = 1;
+static int charcol = 0;
+
+static int getch(FILE *stream) {
+  if (nextiseof) {
+    return EOF;
+  }
+
+  int c = getc(stream);
+  if (c == '\n') {
+    charline++;
+    charcol = 0;
+  } else {
+    charcol++;
+  }
+  return c;
+}
+
+static int ungetch(char c, FILE *stream) {
+  if (c == EOF) {
+    nextiseof = 1;
+  } else {
+    if (c == '\n') {
+      charline--;
+      charcol = 0;
+    } else {
+      charcol--;
+    }
+    return ungetc(c, stream);
+  }
+}
+
 
 int gettoken(FILE *stream) {
   int tokentype;
   int c;
   char *p = tokenval;
 
-  if (nextiseof == EOF) {
-    c = EOF;
-  } else {
-    while ((c = getc(stream)) == ' ' || c == '\t');
-  }
+  while ((c = getch(stream)) == ' ' || c == '\t');
+  tokenline = charline;
+  tokencol = charcol;
 
   if (c == EOF) {
     tokentype = c;
@@ -41,7 +72,7 @@ int gettoken(FILE *stream) {
     tokenval[0] = c;
     tokenval[1] = '\0';
   } else if (isalpha(c)) {
-    for (*p++ = c; isalnum(c = getc(stream));) {
+    for (*p++ = c; isalnum(c = getch(stream));) {
       *p++ = c;
     }
     *p = '\0';
@@ -50,22 +81,14 @@ int gettoken(FILE *stream) {
     } else {
       tokentype = ID;
     }
-    if (c == EOF) {
-      nextiseof = EOF;
-    } else {
-      ungetc(c, stream);
-    }
+    ungetch(c, stream);
   } else if (isdigit(c)) {
-    for (*p++ = c; isdigit(c = getc(stream));) {
+    for (*p++ = c; isdigit(c = getch(stream));) {
       *p++ = c;
     }
     *p = '\0';
     tokentype = DIGITS;
-    if (c == EOF) {
-      nextiseof = EOF;
-    } else {
-      ungetc(c, stream);
-    }
+    ungetch(c, stream);
   } else {
     tokentype = ILLEGAL;
     tokenval[0] = c;

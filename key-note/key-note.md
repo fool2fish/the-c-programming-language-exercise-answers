@@ -4,9 +4,22 @@
 - 寄存器变量（p71）
 - #define function() 的优势 (为确保正确的优先级，所有得参数都要用括号括起来，很烦人啊)
 - #undefine 已定义的宏
+- 对齐
 
 ---
 
+### 隐式转换
+
+```
+int main() {
+  int i = 0x7fffffff;  // 假定在 32 位机上运行
+  long long j = i + 1;
+  long long k = i + (long long) 1;
+  printf("%lld, %lld\n", j, k);  // 输出 "-2147483648, 2147483648"
+}
+```
+
+计算 `i + 1` 时，加号两边类型相同，不需要进行类型转换，直到将相加的值赋值给 j 时，发现等号两边类型不同，才进行类型转换。
 
 ### const
 
@@ -26,7 +39,7 @@ int main(){
 
 ```
 char* const a
-char const *p // 疑问：两者有什么区别？
+char const *p
 ```
 
 ### 初始化

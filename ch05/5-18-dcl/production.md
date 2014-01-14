@@ -9,7 +9,7 @@ declaration-specifiers:
   | type-specifier declaration-specifiers?
   | type-qualifier declaration-specifiers?
 
-storage-class specifier:
+storage-class-specifier:
     'auto'
 ￼￼  | 'register'
   | 'static'

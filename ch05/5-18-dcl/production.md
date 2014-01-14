@@ -10,26 +10,25 @@ declaration-specifiers:
   | type-qualifier declaration-specifiers?
 
 storage-class-specifier:
-    'auto'
-￼￼  | 'register'
-  | 'static'
-  | 'extern'
-  | 'typedef'
+    "auto"
+￼￼  | "register"
+  | "static"
+  | "extern"
 
 type-specifier:
-    'void'
-  | 'char'
-  | 'short'
-  | 'int'
-  | 'long'
-  | 'float'
-  | 'double'
-  | 'signed'
-  | 'unsigned'
+    "void"
+  | "char"
+  | "short"
+  | "int"
+  | "long"
+  | "float"
+  | "double"
+  | "signed"
+  | "unsigned"
 
 type-qualifier:
-    'const'
-  | 'volatile'
+    "const"
+  | "volatile"
 
 declarator:
   pointer? direct-declarator
@@ -37,11 +36,11 @@ declarator:
 direct-declarator:
     identifier
   | (declarator)
-  | direct-declarator '[' digits? ']'
-  | direct-declarator '(' parameter-type-list? ')'
+  | direct-declarator "[" digits? "]"
+  | direct-declarator "(" parameter-type-list? ")"
 
 pointer:
-    '*' type-qualifier-list? pointer?
+    "*" type-qualifier-list? pointer?
 
 type-qualifier-list:
     type-qualifier type-qualifier-list?
@@ -62,8 +61,8 @@ direct-declarator-simple:
   | (declarator)
 
 director-declarator-postfix:
-    '[' digits? ']'
-  | '(' parameter-type-list? ')'
+    "[" digits? "]"
+  | "(" parameter-type-list? ")"
 ```
 
 消除左递归
@@ -81,6 +80,6 @@ direct-declarator-arr-fn:
   | epsilon
 
 director-declarator-postfix:
-    '[' digits? ']'
-  | '(' parameter-type-list? ')'
+    "[" digits? "]"
+  | "(" parameter-type-list? ")"
 ```

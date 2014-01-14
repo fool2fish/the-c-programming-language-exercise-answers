@@ -4,20 +4,40 @@
 
 #include "gettoken.h"
 
-static char *keywords[] = {
-  "char", "int", "float", "double",
-  "long", "short", "signed", "unsigned",
-  "const", "struct", "void", ""
+static char *storage_class_specifier[] = {
+  "auto", "register", "static", "extern", ""
 };
 
-static int iskeyword(char *s) {
+static char *type_specifier[] = {
+  "void", "char", "short", "int",
+  "long", "float", "double",
+  "signed", "unsigned", ""
+};
+
+static char *type_qualifier[] = {
+  "const", "volatile", ""
+};
+
+static int isinlist(char *s, char *list[]) {
   int i;
-  for (i = 0; strcmp(keywords[i], "") != 0; i++) {
-    if (strcmp(s, keywords[i]) == 0) {
+  for (i = 0; strcmp(list[i], "") != 0; i++) {
+    if (strcmp(s, list[i]) == 0) {
       return 1;
     }
   }
   return 0;
+}
+
+static int gettokentype(char *s) {
+  if (isinlist(s, storage_class_specifier)) {
+    return STORAGE_CLASS_SPECIFIER;
+  } else if (isinlist(s, type_specifier)) {
+    return TYPE_SPECIFIER;
+  } else if (isinlist(s, type_qualifier)) {
+    return TYPE_QUALIFIER;
+  } else {
+    return IDENTIFIER;
+  }
 }
 
 
@@ -76,11 +96,7 @@ int gettoken(FILE *stream) {
       *p++ = c;
     }
     *p = '\0';
-    if (iskeyword(tokenval)) {
-      tokentype = KEYWORD;
-    } else {
-      tokentype = ID;
-    }
+    tokentype = gettokentype(tokenval);
     ungetch(c, stream);
   } else if (isdigit(c)) {
     for (*p++ = c; isdigit(c = getch(stream));) {

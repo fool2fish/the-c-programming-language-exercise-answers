@@ -12,35 +12,35 @@ int main() {
   }
   */
 
-  assert(gettoken(stdin) == KEYWORD);
+  assert(gettoken(stdin) == TYPE_QUALIFIER);
   assert(strcmp(tokenval, "const") == 0);
 
-  assert(gettoken(stdin) == KEYWORD);
+  assert(gettoken(stdin) == TYPE_SPECIFIER);
   assert(strcmp(tokenval, "char") == 0);
 
   assert(gettoken(stdin) == '*');
   assert(gettoken(stdin) == '(');
   assert(gettoken(stdin) == '*');
 
-  assert(gettoken(stdin) == ID);
+  assert(gettoken(stdin) == IDENTIFIER);
   assert(strcmp(tokenval, "foo") == 0);
 
   assert(gettoken(stdin) == '(');
 
-  assert(gettoken(stdin) == KEYWORD);
+  assert(gettoken(stdin) == TYPE_SPECIFIER);
   assert(strcmp(tokenval, "void") == 0);
 
   assert(gettoken(stdin) == '*');
 
-  assert(gettoken(stdin) == ID);
+  assert(gettoken(stdin) == IDENTIFIER);
   assert(strcmp(tokenval, "p") == 0);
 
   assert(gettoken(stdin) == ',');
 
-  assert(gettoken(stdin) == KEYWORD);
+  assert(gettoken(stdin) == TYPE_SPECIFIER);
   assert(strcmp(tokenval, "int") == 0);
 
-  assert(gettoken(stdin) == ID);
+  assert(gettoken(stdin) == IDENTIFIER);
   assert(strcmp(tokenval, "param") == 0);
 
   assert(gettoken(stdin) == ')');

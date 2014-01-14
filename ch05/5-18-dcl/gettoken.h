@@ -9,8 +9,10 @@ int tokencol;
 
 enum tokentypes {
   ILLEGAL,
-  ID,
-  KEYWORD,
+  IDENTIFIER,
+  STORAGE_CLASS_SPECIFIER,
+  TYPE_SPECIFIER,
+  TYPE_QUALIFIER,
   DIGITS
 };
 

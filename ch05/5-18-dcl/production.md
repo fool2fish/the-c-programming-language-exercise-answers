@@ -1,37 +1,86 @@
-# 产生式
+# Simplified Production
 
 ```
-start -> keywords dcl
+declaration:
+    declaration-specifiers declarator;
 
-keywords -> keyword keywords
-          | epsilon
+declaration-specifiers:
+    storage-class-specifier declaration-specifiers?
+  | type-specifier declaration-specifiers?
+  | type-qualifier declaration-specifiers?
 
-dcl -> "*" direct-dcl
-     | direct-dcl
+storage-class specifier:
+    'auto'
+￼￼  | 'register'
+  | 'static'
+  | 'extern'
+  | 'typedef'
 
-direct-dcl -> direct-dcl postfix
-            | direct-dcl'
+type-specifier:
+    'void'
+  | 'char'
+  | 'short'
+  | 'int'
+  | 'long'
+  | 'float'
+  | 'double'
+  | 'signed'
+  | 'unsigned'
 
-direct-dcl' -> id
-             | "(" dcl ")"
+type-qualifier:
+    'const'
+  | 'volatile'
 
-postfix -> "(" params ")"
-         | "[" length "]"
+declarator:
+  pointer? direct-declarator
 
-params -> param "," params
-        | epsilon
+direct-declarator:
+    identifier
+  | (declarator)
+  | direct-declarator '[' digits? ']'
+  | direct-declarator '(' parameter-type-list? ')'
 
-param -> start
+pointer:
+    '*' type-qualifier-list? pointer?
 
-length -> digits
-        | epsilon
+type-qualifier-list:
+    type-qualifier type-qualifier-list?
+
+parameter-type-list:
+    [^)]*
+```
+
+提取左公因子
+
+```
+direct-declarator:
+    direct-declarator-simple
+  | direct-declarator director-declarator-postfix
+
+direct-declarator-simple:
+    identifier
+  | (declarator)
+
+director-declarator-postfix:
+    '[' digits? ']'
+  | '(' parameter-type-list? ')'
 ```
 
 消除左递归
 
 ```
-direct-dcl -> direct-dcl' B
+direct-declarator:
+    direct-declarator-simple direct-declarator-arr-fn
 
-B -> postfix B
-   | epsilon
+direct-declarator-simple:
+    identifier
+  | (declarator)
+
+direct-declarator-arr-fn:
+    director-declarator-postfix direct-declarator-arr-fn
+  | epsilon
+
+director-declarator-postfix:
+    '[' digits? ']'
+  | '(' parameter-type-list? ')'
 ```

@@ -1,8 +1,8 @@
-# Simplified Production
+# Simplified Syntax-directed Translation Scheme
 
 ```
 declaration:
-    declaration-specifiers declarator;
+    declaration-specifiers declarator  {printf("%s", declaration-specifiers)}
 
 declaration-specifiers:
     storage-class-specifier declaration-specifiers?
@@ -31,21 +31,19 @@ type-qualifier:
   | "volatile"
 
 declarator:
-  pointer? direct-declarator
+    direct-declarator
+  | pointer direct-declarator {printf("%s"), pointer}
 
 direct-declarator:
     identifier
   | (declarator)
   | direct-declarator "[" digits? "]"
-  | direct-declarator "(" parameter-type-list? ")"
+  | direct-declarator "(" params? ")"
 
 pointer:
-    "*" type-qualifier-list? pointer?
+    "*" pointer?
 
-type-qualifier-list:
-    type-qualifier type-qualifier-list?
-
-parameter-type-list:
+params:
     [^)]*
 ```
 
@@ -62,7 +60,7 @@ direct-declarator-simple:
 
 director-declarator-postfix:
     "[" digits? "]"
-  | "(" parameter-type-list? ")"
+  | "(" params? ")"
 ```
 
 消除左递归
@@ -72,7 +70,7 @@ direct-declarator:
     direct-declarator-simple direct-declarator-arr-fn
 
 direct-declarator-simple:
-    identifier
+    identifier       {printf("%s: ", identifier)}
   | (declarator)
 
 direct-declarator-arr-fn:
@@ -80,6 +78,6 @@ direct-declarator-arr-fn:
   | epsilon
 
 director-declarator-postfix:
-    "[" digits? "]"
-  | "(" parameter-type-list? ")"
+    "[" digits? "]"  {printf("array[%s] of ", digits)}
+  | "(" params? ")"  {printf("function(%s) returning ", params)}
 ```

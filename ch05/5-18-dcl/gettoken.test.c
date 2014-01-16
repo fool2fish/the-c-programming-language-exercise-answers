@@ -15,6 +15,10 @@ int main() {
   assert(gettoken(stdin) == TYPE_QUALIFIER);
   assert(strcmp(tokenval, "const") == 0);
 
+  ungettoken();
+  assert(gettoken(stdin) == TYPE_QUALIFIER);
+  assert(strcmp(tokenval, "const") == 0);
+
   assert(gettoken(stdin) == TYPE_SPECIFIER);
   assert(strcmp(tokenval, "char") == 0);
 

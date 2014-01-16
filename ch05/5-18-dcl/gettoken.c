@@ -4,6 +4,8 @@
 
 #include "gettoken.h"
 
+static int has_unget_token = 0;
+
 static char *storage_class_specifier[] = {
   "auto", "register", "static", "extern", ""
 };
@@ -76,7 +78,11 @@ static int ungetch(char c, FILE *stream) {
 
 
 int gettoken(FILE *stream) {
-  int tokentype;
+  if (has_unget_token) {
+    has_unget_token = 0;
+    return tokentype;
+  }
+
   int c;
   char *p = tokenval;
 
@@ -85,34 +91,37 @@ int gettoken(FILE *stream) {
   tokencol = charcol;
 
   if (c == EOF) {
-    tokentype = c;
-    tokenval[0] = '\0';
+    return tokentype = c;
   } else if (c == '(' || c == ')' || c == '[' || c == ']' || c == '*' || c == ',' || c == '\n') {
-    tokentype = c;
-    tokenval[0] = c;
-    tokenval[1] = '\0';
+    return tokentype = c;
   } else if (isalpha(c)) {
     for (*p++ = c; isalnum(c = getch(stream));) {
       *p++ = c;
     }
     *p = '\0';
-    tokentype = gettokentype(tokenval);
     ungetch(c, stream);
+    return tokentype = gettokentype(tokenval);
   } else if (isdigit(c)) {
     for (*p++ = c; isdigit(c = getch(stream));) {
       *p++ = c;
     }
     *p = '\0';
-    tokentype = DIGITS;
     ungetch(c, stream);
+    return tokentype = DIGITS;
   } else {
-    tokentype = ILLEGAL;
-    tokenval[0] = c;
-    tokenval[1] = '\0';
+    return tokentype = ILLEGAL;
   }
-  return tokentype;
 }
 
 
+int ungettoken() {
+  if (has_unget_token) {
+    printf("Error: call ungettoken() repeatly.");
+    return 1;
+  } else {
+    has_unget_token = 1;
+    return 0;
+  }
+}
 
 

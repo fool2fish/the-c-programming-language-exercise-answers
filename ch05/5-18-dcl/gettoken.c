@@ -47,7 +47,7 @@ static int nextiseof = 0;
 static int charline = 1;
 static int charcol = 0;
 
-static int getch(FILE *stream) {
+static int getch() {
   if (nextiseof) {
     return EOF;
   }
@@ -62,7 +62,7 @@ static int getch(FILE *stream) {
   return c;
 }
 
-static int ungetch(char c, FILE *stream) {
+static int ungetch(char c) {
   if (c == EOF) {
     nextiseof = 1;
   } else {
@@ -77,7 +77,7 @@ static int ungetch(char c, FILE *stream) {
 }
 
 
-int gettoken(FILE *stream) {
+int gettoken() {
   if (has_unget_token) {
     has_unget_token = 0;
     return tokentype;
@@ -99,14 +99,14 @@ int gettoken(FILE *stream) {
       *p++ = c;
     }
     *p = '\0';
-    ungetch(c, stream);
+    ungetch(c);
     return tokentype = gettokentype(tokenval);
   } else if (isdigit(c)) {
     for (*p++ = c; isdigit(c = getch(stream));) {
       *p++ = c;
     }
     *p = '\0';
-    ungetch(c, stream);
+    ungetch(c);
     return tokentype = DIGITS;
   } else {
     return tokentype = ILLEGAL;

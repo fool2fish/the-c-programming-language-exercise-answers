@@ -3,6 +3,8 @@
 
 #define MAXTOKEN 100
 
+FILE *stream;
+
 int tokentype;
 char tokenval[MAXTOKEN];
 int tokenline;
@@ -17,6 +19,6 @@ enum tokentypes {
   DIGITS
 };
 
-int gettoken(FILE *stream);
+int gettoken();
 int ungettoken();
 #endif

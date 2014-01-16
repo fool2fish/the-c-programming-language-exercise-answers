@@ -32,7 +32,7 @@ type_qualifier:
 
 declarator:
     direct_declarator
-  | pointer direct_declarator {printf("%s"), pointer}
+  | pointers direct_declarator {printf("%s"), pointers}
 
 direct_declarator:
     identifier
@@ -40,7 +40,7 @@ direct_declarator:
   | direct_declarator "[" digits? "]"
   | direct_declarator "(" params? ")"
 
-pointer:
+pointers:
     "*" pointers?
 
 params:

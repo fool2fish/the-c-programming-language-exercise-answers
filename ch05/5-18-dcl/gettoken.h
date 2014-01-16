@@ -1,6 +1,8 @@
 #ifndef _GETTOKEN_H_
 #define _GETTOKEN_H_
 
+#include <stdio.h>
+
 #define MAXTOKEN 100
 
 FILE *stream;

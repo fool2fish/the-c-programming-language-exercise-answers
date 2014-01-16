@@ -1,7 +1,8 @@
 run:
 
-	gcc main.c dcl.c gettoken.c
-	./a.out
+	gcc main.c parse.c gettoken.c
+	./a.out <gettoken.input.txt
+	rm a.out
 
 test:
 

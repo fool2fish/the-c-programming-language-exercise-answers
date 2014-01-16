@@ -2,20 +2,20 @@
 
 ```
 declaration:
-    declaration-specifiers declarator  {printf("%s", declaration-specifiers)}
+    declaration_specifiers declarator  {printf("%s", declaration_specifiers)}
 
-declaration-specifiers:
-    storage-class-specifier declaration-specifiers?
-  | type-specifier declaration-specifiers?
-  | type-qualifier declaration-specifiers?
+declaration_specifiers:
+    storage_class_specifier declaration_specifiers?
+  | type_specifier declaration_specifiers?
+  | type_qualifier declaration_specifiers?
 
-storage-class-specifier:
+storage_class_specifier:
     "auto"
 ￼￼  | "register"
   | "static"
   | "extern"
 
-type-specifier:
+type_specifier:
     "void"
   | "char"
   | "short"
@@ -26,19 +26,19 @@ type-specifier:
   | "signed"
   | "unsigned"
 
-type-qualifier:
+type_qualifier:
     "const"
   | "volatile"
 
 declarator:
-    direct-declarator
-  | pointer direct-declarator {printf("%s"), pointer}
+    direct_declarator
+  | pointer direct_declarator {printf("%s"), pointer}
 
-direct-declarator:
+direct_declarator:
     identifier
   | (declarator)
-  | direct-declarator "[" digits? "]"
-  | direct-declarator "(" params? ")"
+  | direct_declarator "[" digits? "]"
+  | direct_declarator "(" params? ")"
 
 pointer:
     "*" pointers?
@@ -50,15 +50,15 @@ params:
 提取左公因子
 
 ```
-direct-declarator:
-    direct-declarator-simple
-  | direct-declarator director-declarator-postfix
+direct_declarator:
+    direct_declarator_simple
+  | direct_declarator director_declarator_postfix
 
-direct-declarator-simple:
+direct_declarator_simple:
     identifier
   | (declarator)
 
-director-declarator-postfix:
+director_declarator_postfix:
     "[" digits? "]"
   | "(" params? ")"
 ```
@@ -66,18 +66,18 @@ director-declarator-postfix:
 消除左递归
 
 ```
-direct-declarator:
-    direct-declarator-simple direct-declarator-arr-fn
+direct_declarator:
+    direct_declarator_simple direct_declarator_arr_fn
 
-direct-declarator-simple:
+direct_declarator_simple:
     identifier       {printf("%s: ", identifier)}
   | (declarator)
 
-direct-declarator-arr-fn:
-    director-declarator-postfix direct-declarator-arr-fn
+direct_declarator_arr_fn:
+    director_declarator_postfix direct_declarator_arr_fn
   | epsilon
 
-director-declarator-postfix:
+director_declarator_postfix:
     "[" digits? "]"  {printf("array[%s] of ", digits)}
   | "(" params? ")"  {printf("function(%s) returning ", params)}
 ```

@@ -41,7 +41,7 @@ direct-declarator:
   | direct-declarator "(" params? ")"
 
 pointer:
-    "*" pointer?
+    "*" pointers?
 
 params:
     [^)]*

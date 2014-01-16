@@ -16,7 +16,7 @@ void parse() {
 }
 
 void declaration_specifiers() {
-  while (gettoken(), 2 <= tokentype && tokentype <= 4) {
+  while (gettoken(), STORAGE_CLASS_SPECIFIER <= tokentype && tokentype <= TYPE_QUALIFIER) {
     strcat(specifiers, tokenval);
     strcat(specifiers, " ");
   }

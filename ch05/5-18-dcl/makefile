@@ -1,7 +1,7 @@
 run:
 
 	gcc main.c parse.c gettoken.c
-	./a.out <gettoken.input.txt
+	./a.out <main.input.txt
 	rm a.out
 
 test:

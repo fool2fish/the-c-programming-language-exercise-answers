@@ -5,22 +5,34 @@
  * This makes tabs and backspaces visible in an unambiguous way.
  */
 
-#include <stdio.h>
+#include <stdio.h> //header File for the input and output 
 
-int main() {
+int main() 
+{
   char c;
-  while ((c = getchar()) != EOF) {
-    if (c == '\t') {
+  
+  while ((c = getchar()) != EOF)  //Loop will Run till the word get ends
+  {
+    if (c == '\t') 
+    {
       putchar('\\');
       putchar('t');
-    } else if (c == '\b') {
+    } 
+    else if (c == '\b') 
+    {
       putchar('\\');
       putchar('b');
-    } else if (c == '\\') {
+    } 
+    else if (c == '\\') 
+    {
       putchar('\\');
       putchar('\\');
-    } else {
+    } 
+    else 
+    {
       putchar(c);
     }
   }
+  
+  return 0;
 }
